@@ -1,0 +1,25 @@
+<?php
+
+namespace Tests\Feature\API\{Model};
+
+use PHPUnit\Framework\Attributes\Test;
+use Tests\Attributes\IrlixApiTest;
+use Tests\Feature\ApiTestCase;
+use Tests\Traits\TestUnauthorized;
+
+#[IrlixApiTest(method: 'patch', route: '{models}.update')]
+class {Model}UpdateTest extends ApiTestCase
+{
+    use TestUnauthorized;
+
+    #[Test]
+    public function success(): void
+    {
+
+    }
+
+    public function failPolicy(): void
+    {
+
+    }
+}

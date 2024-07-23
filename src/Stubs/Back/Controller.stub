@@ -1,0 +1,63 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers;
+
+use App\Data\{Model}\{Model}StoreDTO;
+use App\Data\{Model}\{Model}UpdateDTO;
+use App\Http\Requests\{Model}\{Model}StoreRequest;
+use App\Http\Requests\{Model}\{Model}UpdateRequest;
+use App\Http\Resources\{Model}\{Model}Resource;
+use App\Models\{Model};
+use App\Services\{ServiceClassName};
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+final class {Controller} extends Controller
+{
+    public function __construct(
+        private readonly {ServiceClassName} ${serviceClassName},
+    ) {}
+
+    public function index(): JsonResponse
+    {
+        return $this->jsonResponse([
+            '{models}' => {Model}Resource::collection($this->{serviceClassName}->getAll()),
+        ]);
+    }
+
+    public function show({Model} ${model}): JsonResponse
+    {
+        return $this->jsonResponse([
+            '{model}' => {Model}Resource::make(${model}),
+        ]);
+    }
+
+    public function store({Model}StoreRequest $request): JsonResponse
+    {
+        return $this->jsonResponse([
+            '{model}' => {Model}Resource::make(
+                $this->{serviceClassName}->create({Model}StoreDTO::from($request->validated())),
+            ),
+        ], Response::HTTP_CREATED);
+    }
+
+    public function update({Model}UpdateRequest $request, {Model} ${model}): JsonResponse
+    {
+        return $this->jsonResponse([
+            '{model}' => {Model}Resource::make(
+            $this->{serviceClassName}->update(${model}, {Model}UpdateDTO::from($request->validated())),
+            ),
+        ]);
+    }
+
+    public function destroy({Model} ${model}): JsonResponse
+    {
+        $this->{serviceClassName}->delete(${model});
+
+        return $this->jsonResponse(
+            status: Response::HTTP_NO_CONTENT,
+        );
+    }
+}

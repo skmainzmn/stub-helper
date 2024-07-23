@@ -1,0 +1,42 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Services;
+
+use App\Data\{Model}\{Model}StoreDTO;
+use App\Data\{Model}\{Model}UpdateDTO;
+use App\Models\{Model};
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+
+final class {ServiceClassName}
+{
+    /**
+     * @return Collection<{Model}>
+     */
+    public function getAll(): Collection
+    {
+        return {Model}::query()->get();
+    }
+
+    public function create({Model}StoreDTO $data): {Model}
+    {
+        return {Model}::query()->create($data->toArray());
+    }
+
+    public function update({Model} ${model}, {Model}UpdateDTO $data): {Model}
+    {
+        return tap(${model}->refresh(), static fn({Model} ${model}) => ${model}->update($data->toArray()));
+    }
+
+    public function delete({Model} ${model}): {Model}
+    {
+        return tap(${model}, static fn ({Model} ${model}) => ${model}->delete());
+    }
+
+    public function getListWithPagination(int $perPage = 20): LengthAwarePaginator
+    {
+        return {Model}::query()->paginate($perPage);
+    }
+}

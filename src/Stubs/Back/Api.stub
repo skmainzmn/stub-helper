@@ -1,0 +1,17 @@
+Route::prefix('{models}')->group(function () {
+    Route::get('/', [{Controller}::class, 'index'])
+        ->can('viewAny', {Model}::class)
+        ->name('{models}.index');
+    Route::post('/{model}', [{Controller}::class, 'show'])
+        ->can('view', {Model}::class)
+        ->name('{models}.show');
+    Route::post('/', [{Controller}::class, 'store'])
+        ->can('create', {Model}::class)
+        ->name('{models}.store');
+    Route::match(['PUT', 'PATCH'], '/{model}', [{Controller}::class, 'update'])
+        ->can('update', {Model}::class)
+        ->name('{models}.update');
+    Route::delete('/{model}', [{Controller}::class, 'destroy'])
+        ->can('destroy', {Model}::class)
+        ->name('{models}.destroy');
+});

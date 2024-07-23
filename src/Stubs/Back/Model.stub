@@ -1,0 +1,21 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models;
+
+use Database\Factories\{Model}Factory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * @method static {Model}Factory factory($count = null, $state = [])
+ */
+class {Model} extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+
+    ];
+}
