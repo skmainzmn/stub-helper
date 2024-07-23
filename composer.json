@@ -1,6 +1,8 @@
 {
     "name": "irlix/stub-helper",
+    "description": "File stub generation for Laravel",
     "version": "1.0.1",
+    "minimum-stability": "stable",
     "license": "MIT",
     "type": "library",
     "require": {
