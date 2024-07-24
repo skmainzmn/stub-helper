@@ -35,20 +35,20 @@ final class CreateBackendTemplate extends Command
             'Controller' => "app/Http/Controllers/{$this->modelName}Controller",
             'StoreRequest' => "app/Http/Requests/$this->modelName/{$this->modelName}StoreRequest",
             'UpdateRequest' => "app/Http/Requests/$this->modelName/{$this->modelName}UpdateRequest",
-            'StoreDTO' => "app/Data/$this->modelName/{$this->modelName}StoreDTO",
-            'UpdateDTO' => "app/Data/$this->modelName/{$this->modelName}UpdateDTO",
+            'StoreDto' => "app/Http/Dto/$this->modelName/{$this->modelName}StoreDto",
+            'UpdateDto' => "app/Http/Dto/$this->modelName/{$this->modelName}UpdateDto",
             'Service' => "app/Services/{$this->modelName}Service",
             'Model' => "app/Models/$this->modelName",
             'Resource' => "app/Http/Resources/$this->modelName/{$this->modelName}Resource",
             'Policy' => "app/Policies/{$this->modelName}Policy",
-            'IndexTest' => "tests/Feature/API/$this->modelName/{$this->modelName}IndexTest",
-            'ShowTest' => "tests/Feature/API/$this->modelName/{$this->modelName}ShowTest",
-            'StoreTest' => "tests/Feature/API/$this->modelName/{$this->modelName}StoreTest",
-            'UpdateTest' => "tests/Feature/API/$this->modelName/{$this->modelName}UpdateTest",
-            'DestroyTest' => "tests/Feature/API/$this->modelName/{$this->modelName}DestroyTest",
+            'IndexTest' => "tests/Feature/Api/$this->modelName/{$this->modelName}IndexTest",
+            'ShowTest' => "tests/Feature/Api/$this->modelName/{$this->modelName}ShowTest",
+            'StoreTest' => "tests/Feature/Api/$this->modelName/{$this->modelName}StoreTest",
+            'UpdateTest' => "tests/Feature/Api/$this->modelName/{$this->modelName}UpdateTest",
+            'DestroyTest' => "tests/Feature/Api/$this->modelName/{$this->modelName}DestroyTest",
         ];
 
-        if ($this->choice('Should be generated all possible files?', ['Yes', 'No'], 0) === 'Yes') {
+        if ($this->choice('Should be generated all possible files?', ['Yes', 'No'], 0) !== 'Yes') {
             $files = $this->choice('Generated files', array_keys($backEndFiles), 0, multiple: true);
 
             $backEndFiles = Arr::only($backEndFiles, $files);

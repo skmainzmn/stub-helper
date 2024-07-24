@@ -18,6 +18,7 @@ class {Model}DestroyTest extends ApiTestCase
 
     }
 
+    #[Test]
     public function failPolicy(): void
     {
 

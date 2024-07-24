@@ -7,10 +7,9 @@ namespace App\Services;
 use App\Data\{Model}\{Model}StoreDTO;
 use App\Data\{Model}\{Model}UpdateDTO;
 use App\Models\{Model};
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
-final class {ServiceClassName}
+final readonly class {ServiceClassName}
 {
     /**
      * @return Collection<{Model}>
@@ -20,23 +19,19 @@ final class {ServiceClassName}
         return {Model}::query()->get();
     }
 
-    public function create({Model}StoreDTO $data): {Model}
+    public function create({Model}StoreDTO $dto): {Model}
     {
-        return {Model}::query()->create($data->toArray());
+        return {Model}::query()->create($dto->toArray());
     }
 
-    public function update({Model} ${model}, {Model}UpdateDTO $data): {Model}
+    public function update({Model} ${model}, {Model}UpdateDTO $dto): {Model}
     {
-        return tap(${model}->refresh(), static fn({Model} ${model}) => ${model}->update($data->toArray()));
+        ${model}->update($dto->toArray());
+        return ${model};
     }
 
-    public function delete({Model} ${model}): {Model}
+    public function delete({Model} ${model}): ?bool
     {
-        return tap(${model}, static fn ({Model} ${model}) => ${model}->delete());
-    }
-
-    public function getListWithPagination(int $perPage = 20): LengthAwarePaginator
-    {
-        return {Model}::query()->paginate($perPage);
+        return ${model}->delete();
     }
 }

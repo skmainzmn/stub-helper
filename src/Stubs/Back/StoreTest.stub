@@ -18,6 +18,7 @@ class {Model}StoreTest extends ApiTestCase
 
     }
 
+    #[Test]
     public function failPolicy(): void
     {
 
