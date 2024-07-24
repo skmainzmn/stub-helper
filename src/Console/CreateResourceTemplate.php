@@ -36,7 +36,7 @@ class CreateResourceTemplate extends Command
         return Str::replace(
             ['{Model}'],
             [$this->modelName],
-            File::get('$stubPath/Resource.stub'),
+            File::get("$stubPath/Resource.stub"),
         );
     }
 
