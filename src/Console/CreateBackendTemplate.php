@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Irlix\StubHelper\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -46,6 +47,12 @@ final class CreateBackendTemplate extends Command
             'UpdateTest' => "tests/Feature/API/$this->modelName/{$this->modelName}UpdateTest",
             'DestroyTest' => "tests/Feature/API/$this->modelName/{$this->modelName}DestroyTest",
         ];
+
+        if ($this->choice('Should be generated all possible files?', ['Yes', 'No'], 0) === 'Yes') {
+            $files = $this->choice('Generated files', array_keys($backEndFiles), 0, multiple: true);
+
+            $backEndFiles = Arr::only($backEndFiles, $files);
+        }
 
         foreach ($backEndFiles as $stub => $putPath) {
             $this->putBackEndFile($putPath, $stub);

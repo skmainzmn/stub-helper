@@ -1,7 +1,7 @@
 {
     "name": "irlix/stub-helper",
     "description": "File stub generation for Laravel",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "minimum-stability": "stable",
     "license": "MIT",
     "type": "library",
@@ -23,5 +23,29 @@
                 "Irlix\\StubHelper\\IrlixStubHelperProvider"
             ]
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/phpstan analyse"
+        ]
     }
 }
