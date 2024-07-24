@@ -113,7 +113,6 @@ final class CreateBackendTemplate extends Command
             return;
         }
 
-
         File::put(
             $this->getDirectory(base_path($path) . ".php"),
             $this->getStub($stub),
@@ -128,7 +127,6 @@ final class CreateBackendTemplate extends Command
 
         return $path;
     }
-
 
     public function log(array $backEndFiles): void
     {

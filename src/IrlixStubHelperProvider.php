@@ -23,6 +23,7 @@ final class IrlixStubHelperProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\CreateBackendTemplate::class,
+                Console\CreateResourceTemplate::class,
             ]);
         }
     }
